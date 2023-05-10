@@ -17,19 +17,20 @@ registerButton.addEventListener("click", () => {
     Checker(emailRegister) &&
     Checker(passwordRegister) &&
     Checker(passwordConfirm) &&
+    DataBaseChecker(emailRegister) &&
     passwordRegister.value == passwordConfirm.value
   ) {
     const newTrItem = document.createElement("tr");
     newTrItem.innerHTML = `<td>${emailRegister.value}</td>
     <td>${passwordRegister.value}</td>`;
     tableBody.append(newTrItem);
-    emailRegister.value = "";
-    passwordRegister.value = "";
-    passwordConfirm.value = "";
     users.push({
       email: emailRegister.value.trim(),
       password: passwordRegister.value.trim(),
     });
+    emailRegister.value = "";
+    passwordRegister.value = "";
+    passwordConfirm.value = "";
   }
 });
 console.log(users);
@@ -50,4 +51,10 @@ loginButton.addEventListener("click", () => {
 function Checker(data) {
   if (data.value.trim()) return true;
   return false;
+}
+function DataBaseChecker(data) {
+  for (const user of users) {
+    if (data.value.trim() == user.email) return false;
+  }
+  return true;
 }
