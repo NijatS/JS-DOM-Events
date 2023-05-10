@@ -41,8 +41,6 @@ loginButton.addEventListener("click", () => {
       emailLogin.value.trim() == user.email &&
       passwordLogin.value.trim() == user.password
     ) {
-      emailLogin.value = "";
-      passwordLogin.value = "";
       infoLogin.textContent = "Logged In";
     }
   }
